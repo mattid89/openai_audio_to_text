@@ -1,0 +1,5 @@
+/audios
+/.idea
+.env
+/node_modules
+/transcriptions

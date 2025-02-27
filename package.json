@@ -1,0 +1,16 @@
+{
+  "name": "transcript",
+  "version": "1.0.0",
+  "description": "servicio para transcribir audios",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "run": "node --env-file=.env index.js",
+    "test": "test"
+  },
+  "author": "dmatias",
+  "license": "ISC",
+  "dependencies": {
+    "openai": "^4.85.4"
+  }
+}
