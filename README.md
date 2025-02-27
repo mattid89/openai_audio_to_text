@@ -21,12 +21,12 @@ OAI_API_KEY=tu_clave_api_aquí
 ### Como script
 
 ```bash
-node index.js [ruta-al-audio] [ruta-salida]
+node --env-file=.env index.js [ruta-al-audio] [ruta-salida]
 ```
 
 Ejemplo:
 ```bash
-node index.js audios/entrevista.mp3 resultados/transcripcion.txt
+node --env-file=.env index.js audios/entrevista.mp3 resultados/transcripcion.txt
 ```
 
 ### Como módulo
