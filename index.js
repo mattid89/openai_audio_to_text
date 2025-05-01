@@ -4,7 +4,7 @@ import OpenAI from "openai";
 import { fileURLToPath } from "url";
 
 // Función principal para transcribir audio
-async function transcribeAudio(audioPath, outputPath = "transcription.txt", model = "whisper-1") {
+async function transcribeAudio(audioPath, outputPath = "transcriptions/result.txt", model = "whisper-1") {
   try {
     // Verificar que la API key está definida
     if (!process.env.OAI_API_KEY) {
@@ -16,7 +16,7 @@ async function transcribeAudio(audioPath, outputPath = "transcription.txt", mode
     });
 
     console.log(`Transcribiendo archivo: ${audioPath}`);
-    
+
     // Verificar que el archivo existe
     if (!fs.existsSync(audioPath)) {
       throw new Error(`El archivo ${audioPath} no existe`);
@@ -37,7 +37,7 @@ async function transcribeAudio(audioPath, outputPath = "transcription.txt", mode
     // Guardar la transcripción
     fs.writeFileSync(outputPath, transcription.text);
     console.log(`Transcripción guardada en: ${outputPath}`);
-    
+
     return transcription.text;
   } catch (error) {
     console.error(`Error al transcribir audio: ${error.message}`);
@@ -48,9 +48,10 @@ async function transcribeAudio(audioPath, outputPath = "transcription.txt", mode
 // Permitir la ejecución directa del script
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const audioFile = process.argv[2] || "audios/prueba.mp3";
-  const outputFile = process.argv[3] || "transcription.txt";
-  
-  transcribeAudio(audioFile, outputFile)
+  const outputFile = process.argv[3] || "transcriptions/result.txt";
+  const model = process.argv[4] || "whisper-1";
+
+  transcribeAudio(audioFile, outputFile, model)
     .then(() => console.log("Proceso completado con éxito"))
     .catch(err => console.error("El proceso falló:", err));
 }
